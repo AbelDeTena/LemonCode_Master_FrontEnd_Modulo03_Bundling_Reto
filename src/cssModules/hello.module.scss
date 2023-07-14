@@ -1,0 +1,74 @@
+$myColor: rgb(226, 222, 7);
+
+.title {
+  font-size: 2em;
+  color: $myColor;
+
+  &::before {
+    content: "{ ";
+    color: black;
+  }
+
+  &::after {
+    content: " }";
+    color: black;
+  }
+}
+
+.mybutton {
+  background-color: white;
+  border: 3px solid $myColor;
+  border-radius: 3rem;
+  color: black;
+  font-size: 2rem;
+  overflow: hidden;
+  padding: 0.5rem 1rem;
+  position: relative;
+  transition: 0.2s transform ease-in-out;
+  will-change: transform;
+  z-index: 0;
+
+  &::after {
+    background-color: $myColor;
+    border-radius: 3rem;
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(-100%, 0) rotate(10deg);
+    transform-origin: top left;
+    transition: 0.2s transform ease-out;
+    will-change: transform;
+    z-index: -1;
+  }
+
+  &:hover::after {
+    transform: translate(0, 0);
+  }
+
+  &:hover {
+    border: 2px solid transparent;
+    color: black;
+    transform: scale(1.05);
+    will-change: transform;
+  }
+
+  &:active {
+    animation: pulse 0.5s;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.98);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(0.98);
+  }
+}
